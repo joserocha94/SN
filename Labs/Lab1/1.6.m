@@ -1,5 +1,5 @@
 % =========================================
-%Exercise 6 – Highest and Lowest Points
+% Exercise 6 – Highest and Lowest Points
 % =========================================
 
 % Identify the time/date and the coordinates of the highest and lowest points (altitude) on the track.
