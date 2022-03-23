@@ -1,12 +1,22 @@
-#filename = 'teste.m';
+% ============================
+% Exercise 5 – Lat/Lon Box
+% ============================
+
+% Compute the latitude and longitude of the corners of the Lat/Lon box that contains all the 
+% position estimates.
+% TIP: Use only GGA sentences with the GPS Quality Indicator field different from 0, 6, 7, and 8, or GLL sentences 
+% with the Status field equal to ‘A’.
+% Use only sentences with a valid checksum (in this case all the sentences in the file have a valid checksum).
+
 filename = 'ISTShuttle.nmea';
 fid = fopen(filename);
 if fid == -1
     error('Error opening file: %s\n',filename); 
 end
 
-counter=0;
+disp('====== Running ======');
 message=fgetl(fid);
+counter=0;
 
 max_lat = -91;
 max_lat_cell = 0;
@@ -23,11 +33,9 @@ min_lat_dir = '';
 max_long_di = '';
 min_lon_dir = '';
 
-disp('====== Running ======');
-
 while ischar(message) 
   
-    # get checksum value  
+    % get checksum value  
     str = uint8(strtok(message,'$*'));
     chk = 0;
     for i=1:size(str,2)
@@ -35,7 +43,7 @@ while ischar(message)
     endfor
     chk = dec2hex(chk,2);
     
-    # GGA
+    % GGA messages
     if strcmp(message(1:6),'$GPGGA')   
         x = strsplit(message, ',', collapsedelimiters = false) (1,15) {1,:};
         x = strsplit(x, '*', collapsedelimiters = false) (1,2) {1,:};      
@@ -70,51 +78,51 @@ while ischar(message)
         endif    
     end    
   
-     # GLL
+     % GLL messages
     if strcmp(message(1:6),'$GPGLL')   
         x = strsplit(message, ',', collapsedelimiters = false) (1,8) {1,:};
         x = strsplit(x, '*', collapsedelimiters = false) (1,2) {1,:};      
         qa = strsplit(message, ',', collapsedelimiters = false) (1,7) {1,:};
 
         if (x == chk && qa == 'A')
-          #latitude
-          lat_cell = strsplit(message, ',', collapsedelimiters = false) (1,2) {1,:};     
-          lat = str2double(lat_cell(1:2)) + str2double(lat_cell(3:end)) / 60.0;
-          if (lat > max_lat)
-            max_lat = lat;
-            max_lat_cell = lat_cell;
-            max_lat_dir = strsplit(message, ',', collapsedelimiters = false) (1,3) {1,:};
-          endif
-          if (lat < min_lat)
-            min_lat = lat;
-            min_lat_cell = lat_cell;
-            min_lat_dir = strsplit(message, ',', collapsedelimiters = false) (1,3) {1,:};
-          endif   
-
-          #longitude
-          lon_cell = strsplit(message, ',', collapsedelimiters = false) (1,4) {1,:};  
-          lon = str2double(lon_cell(1:3)) + str2double(lon_cell(4:end)) / 60.0;
-          if (lon > max_lon)
-              max_lon = lon;
-              max_lon_cell = lon_cell;
-              max_lon_dir = strsplit(message, ',', collapsedelimiters = false) (1,5) {1,:};
-          endif
-          if (lon < min_lon)
-              min_lon = lon;
-              min_lon_cell = lon_cell;
-              min_lon_dir = strsplit(message, ',', collapsedelimiters = false) (1,5) {1,:};
-          endif  
+            %latitude
+            lat_cell = strsplit(message, ',', collapsedelimiters = false) (1,2) {1,:};     
+            lat = str2double(lat_cell(1:2)) + str2double(lat_cell(3:end)) / 60.0;
+            if (lat > max_lat)
+              max_lat = lat;
+              max_lat_cell = lat_cell;
+              max_lat_dir = strsplit(message, ',', collapsedelimiters = false) (1,3) {1,:};
+            endif
+            if (lat < min_lat)
+              min_lat = lat;
+              min_lat_cell = lat_cell;
+              min_lat_dir = strsplit(message, ',', collapsedelimiters = false) (1,3) {1,:};
+            endif   
+    
+            %longitude
+            lon_cell = strsplit(message, ',', collapsedelimiters = false) (1,4) {1,:};  
+            lon = str2double(lon_cell(1:3)) + str2double(lon_cell(4:end)) / 60.0;
+            if (lon > max_lon)
+                max_lon = lon;
+                max_lon_cell = lon_cell;
+                max_lon_dir = strsplit(message, ',', collapsedelimiters = false) (1,5) {1,:};
+            endif
+            if (lon < min_lon)
+                min_lon = lon;
+                min_lon_cell = lon_cell;
+                min_lon_dir = strsplit(message, ',', collapsedelimiters = false) (1,5) {1,:};
+            endif  
         endif    
     end  
     
-    # RMC
+    % RMC messages
     if strcmp(message(1:6),'$GPRMC')   
         x = strsplit(message, ',', collapsedelimiters = false) (1,13) {1,:};
         x = strsplit(x, '*', collapsedelimiters = false) (1,2) {1,:};      
         qa = strsplit(message, ',', collapsedelimiters = false) (1,3) {1,:};
         
        if (x == chk && qa == 'A')
-          #latitude
+          % latitude
           lat_cell = strsplit(message, ',', collapsedelimiters = false) (1,4) {1,:};     
           lat = str2double(lat_cell(1:2)) + str2double(lat_cell(3:end)) / 60.0;
           if (lat > max_lat)
@@ -128,7 +136,7 @@ while ischar(message)
             min_lat_dir = strsplit(message, ',', collapsedelimiters = false) (1,5) {1,:};
           endif   
 
-          #longitude
+          %longitude
           lon_cell = strsplit(message, ',', collapsedelimiters = false) (1,6) {1,:};  
           lon = str2double(lon_cell(1:3)) + str2double(lon_cell(4:end)) / 60.0;
           if (lon > max_lon)
