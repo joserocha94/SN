@@ -1,8 +1,8 @@
 % ========================================
-% Exercise 7 – Cumulative Elevation Gain
+% Exercise 8 – Speed over Ground
 % ========================================
 
-% Compute the cumulative elevation (altitude) gain on the track.
+% Identify the highest speed over ground on the track
 % Use only VTG sentences with the Mode Indicator field equal to ‘A’ or ‘D’, and a valid checksum 
 % (in this case all the sentences in the file have a valid checksum).
 
