@@ -1,6 +1,6 @@
-#receives 3 args: degrees, minutes and seconds
-//returns the equivalent value in degrees and minutes
-'hdhfh
+% receives 3 args: degrees, minutes and seconds
+% returns the equivalent value in degrees and minutes
+
 function [degrees, minutes] = dms2dm(d, m, s)
   
   minutes = s/60;   
