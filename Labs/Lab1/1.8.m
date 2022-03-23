@@ -15,7 +15,7 @@ end
 disp('====== Running ======');
 
 message = fgetl(fid);
-max_speed = 000.0000;
+max_speed = 000.00;
 
 while ischar(message) 
   
