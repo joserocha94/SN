@@ -1,5 +1,5 @@
 #receives 3 args: degrees, minutes and seconds
-#returns the equivalent value em degrees and minutes
+#returns the equivalent value in degrees and minutes
 
 function [degrees, minutes] = dms2dm(d, m, s)
   
