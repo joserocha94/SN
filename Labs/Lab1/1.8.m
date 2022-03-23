@@ -1,9 +1,8 @@
 % ========================================
-% Exercise 7 – Cumulative Elevation Gain
+% Exercise 7 â€“ Cumulative Elevation Gain
 % ========================================
-
 % Compute the cumulative elevation (altitude) gain on the track.
-% Use only VTG sentences with the Mode Indicator field equal to ‘A’ or ‘D’, and a valid checksum 
+% Use only VTG sentences with the Mode Indicator field equal to â€˜Aâ€™ or â€˜Dâ€™, and a valid checksum 
 % (in this case all the sentences in the file have a valid checksum).
 
 filename = 'ISTShuttle.nmea';
@@ -15,7 +14,6 @@ end
 disp('====== Running ======');
 
 message = fgetl(fid);
-
 max_speed = 000.0000;
 
 while ischar(message) 
@@ -29,8 +27,7 @@ while ischar(message)
     chk = dec2hex(chk,2);
 
     % VTG
-    if strcmp(message(1:6),'$GPVTG')  
-      
+    if strcmp(message(1:6),'$GPVTG')     
         x = strsplit(message, ',', collapsedelimiters = false) (1,10) {1,:};
         x = strsplit(x, '*', collapsedelimiters = false) (1,2) {1,:};      
         qa = strsplit(message, ',', collapsedelimiters = false) (1,10) {1,:};
@@ -41,14 +38,12 @@ while ischar(message)
             if (temp_speed > max_speed)
                 max_speed = temp_speed;
             endif      
-        endif      
-        
+        endif             
     endif    
     
     message = fgetl(fid);   
 endwhile
 
 disp('=========');
-
 disp('max speed:');
 disp(max_speed);
