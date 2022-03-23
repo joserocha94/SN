@@ -1,10 +1,18 @@
-#filename = 'teste.m';
+% =========================================
+%Exercise 6 – Highest and Lowest Points
+% =========================================
+
+% Identify the time/date and the coordinates of the highest and lowest points (altitude) on the track.
+% TIP: Use only GGA sentences with the GPS Quality Indicator field different from 0, 6, 7, and 8 and a valid checksum 
+% (in this case all the sentences in the file have a valid checksum).
+
 filename = 'ISTShuttle.nmea';
 fid = fopen(filename);
 if fid == -1
     error('Error opening file: %s\n',filename); 
 end
 
+disp('====== Running ======');
 message = fgetl(fid);
 
 max_altitude = -100.00;
@@ -22,12 +30,10 @@ min_dir = '';
 
 max_time = min_time = 0;
 
-disp('====== Running ======');
-
-# TODO: GPZDA get date ?
+% TODO: GPZDA get date ?
 while ischar(message) 
   
-    # get checksum value  
+    %get checksum value  
     str = uint8(strtok(message,'$*'));
     chk = 0;
     for i=1:size(str,2)
@@ -35,7 +41,7 @@ while ischar(message)
     endfor
     chk = dec2hex(chk,2);
     
-    # GGA
+    % GGA
     if strcmp(message(1:6),'$GPGGA')   
         x = strsplit(message, ',', collapsedelimiters = false) (1,15) {1,:};
         x = strsplit(x, '*', collapsedelimiters = false) (1,2) {1,:};      
@@ -48,7 +54,7 @@ while ischar(message)
             
             # max values
             if (temp_altitude > max_altitude)
-              
+            
                 # altitude
                 max_altitude = temp_altitude;
                 
@@ -63,8 +69,7 @@ while ischar(message)
                 max_lon_dir = strsplit(message, ',', collapsedelimiters = false) (1,6) {1,:};
                 
                 #time
-                max_time = strsplit(message, ',', collapsedelimiters = false) (1,2) {1,:};   
-                
+                max_time = strsplit(message, ',', collapsedelimiters = false) (1,2) {1,:};            
             endif   
           
             # min values
@@ -86,17 +91,14 @@ while ischar(message)
                 # time
                 min_time = strsplit(message, ',', collapsedelimiters = false) (1,2) {1,:};   
                 
-            endif     
-            
-        endif
-        
+            endif               
+        endif  
     endif    
     
     message = fgetl(fid);   
 endwhile
 
 disp('=========');
-
 disp('max altitude:');
 disp(max_altitude);
 disp('position:');
@@ -108,7 +110,6 @@ disp('time:');
 disp(max_time);
 
 disp('=========');
-
 disp('min altitude:');
 disp(min_altitude);
 disp('position:');
@@ -118,7 +119,5 @@ disp(min_lon_cell);
 disp(min_lon_dir);
 disp('time:');
 disp(min_time);
-
-disp('=========');
 
 fclose(fid);
