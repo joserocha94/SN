@@ -1,7 +1,7 @@
 
-# p1 = (38º 46´ 49.61´´ N, 9º 29´ 56.19´´ W, 103 m)
-# The above format of the latitude and longitude will be referred to as DDº MM´ SS.ss´´.
-# Rewrite those coordinates in the following formats: a) DDº MM.mmm´; b) DD.dddº
+# p1 = (38Âº 46Â´ 49.61Â´Â´ N, 9Âº 29Â´ 56.19Â´Â´ W, 103 m)
+# The above format of the latitude and longitude will be referred to as DDÂº MMÂ´ SS.ssÂ´Â´.
+# Rewrite those coordinates in the following formats: a) DDÂº MM.mmmÂ´; b) DD.dddÂº
 
 tb_dms2dm.m
 
@@ -15,3 +15,5 @@ h1 = 103;
 
 fprintf('Latitude: %d deg %f min\n', dlat, mlat);
 fprintf('Longitude: %d deg %f min\n', dlon, mlon);
+
+% https://github.com/joandrade/snav/tree/843916b400b13b6ae0935dd12709fa6113497750/toolbox
