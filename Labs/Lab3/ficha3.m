@@ -1,5 +1,6 @@
 % ===============================================
-% Exercise 2 � GPS Satellite Ephemeris
+% Exercise 2, 4 e 5
+% exercício 3 feito à parte, demorou mais
 % ===============================================
 
 %   Consider a GPS receiver at the following WGS 84 (x,y,z) cartesian coordinates:
