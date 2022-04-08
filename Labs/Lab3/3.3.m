@@ -1,17 +1,15 @@
 % ===============================================
-% Exercise 2 – GPS Satellite Ephemeris
+% Exercise 3 â€“ Satellite Positions
 % ===============================================
 
 %   Consider a GPS receiver at the following WGS 84 (x,y,z) cartesian coordinates:
 %
 %               r1 = (4918525.18 m, -791212.21 m, 3969762.19 m)
 %
-%   Consider also that, the ephemerides collected by this receiver are stored in file 
-%   ub1.ubx.2056.540000a.eph, in ASCII format, one line per satellite, with the 
-%   following tab separated fields:
-%
-%   Use these ephemerides to calculate each satellite position, in WGS 84 cartesian coordinates, 
-%   at Time Of Week (TOW) 536400 of Week Number (WN) 2056.
+% Calculate the position of the satellites at the time of transmission of the signal which 
+% (eventually) would be received at TOW 536400 of WN 2056, at the coordinates given by r1. 
+% How many iterations were needed to get the difference between the iterated distances from
+% the satellite to the receiver equal to (or bellow) 1mm?
 
   X1 = 4918525.18;
   Y1 = -791212.21;
@@ -24,9 +22,9 @@
   omega = 7.2921151467*10^-5;
   
   fprintf('\nExercicio 3\n');
-  
   data=load('ub1.ubx.2056.540000aOctave.eph');
   SATECEF=zeros(size(data,1),4);
+  
   for i=1:size(data,1)
      SATECEF(i,1)=data(i,1);
      [SATECEF(i,2),SATECEF(i,3),SATECEF(i,4)]=satpos(data(i,1:end), t, WN);
@@ -34,8 +32,8 @@
 
   dists=zeros(size(SATECEF,1),1);
   for i=1:1   %size(dists,1)
-    fprintf('\n');
-    
+  
+    fprintf('\n');   
     d_linha = 0;
     k = 1;
     
@@ -58,18 +56,16 @@
       fprintf('\nSAT: [%.3f \t %.3f \t %.3f]', sx, sy, sz)
       fprintf('\nDELTA_OMEGA: %.6f rad', delta_omega);
       fprintf('\nSAT: [%.3f\t %.3f \t %.3f]', X2, Y2, Z2)
-      fprintf('\nD´: %.6f', d_linha);
-      fprintf('\n|D´-D| = %.6f', abs(d-d_linha));
+      fprintf('\nDÂ´: %.6f', d_linha);
+      fprintf('\n|DÂ´-D| = %.6f', abs(d-d_linha));
       fprintf('\n\n');
       
       if (abs(d-d_linha) < 0.0001)
         break;
       endif
-    
       k = k+1;
       
-    endwhile
-    
+    endwhile  
     fprintf('\nIt took %d interations', k);
-     
+    
   end
