@@ -1,4 +1,4 @@
-
+% Excentric Anomaly (WA2)
 function [E] = solveEA(M,e,t)
   
   if nargin == 2
