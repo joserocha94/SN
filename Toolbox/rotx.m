@@ -1,5 +1,4 @@
-%ROTX Rotation about x axis
-
+% ROTX Rotation about x axis
 function [X2,Y2,Z2] = rotx(X1,Y1,Z1,alpha)
   
 %   Rotates vector [X1,Y1,Z1] about by alpha degrees, about the x axis.
