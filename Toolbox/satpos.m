@@ -1,6 +1,5 @@
-% SATPOS Calculate the WGS-84 coordinates of a given satellite (ficha 3)
+% SATPOS Calculate the WGS-84 coordinates of a given satellite (ficha 3, WA2)
 function [X,Y,Z] = satpos(data, t, WN)
-
 
   miu = 3.986005*10^14;
   OmegaDot_e = 7.2921151467*10^-5;
