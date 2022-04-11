@@ -1,5 +1,4 @@
-
-%LOXODROME Loxodrome function
+% LOXODROME Loxodrome function
 function [psi,d] = loxodrome(lat1, lon1, lat2, lon2)
 
 %   Calculates the parameters of the loxodrome from point 1 to point 2.
@@ -20,6 +19,6 @@ function [psi,d] = loxodrome(lat1, lon1, lat2, lon2)
   d = R*abs(lat2-lat1)/abs(cos(psi));
   psi = psi*180/pi;
 
-  fprintf('Heading = %.1fº \nLoxodrome Distance = %.0fm \n\n', psi, d);
+  fprintf('Heading = %.1fÂº \nLoxodrome Distance = %.0fm \n\n', psi, d);
   
 end
