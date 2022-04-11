@@ -1,6 +1,4 @@
-
-% TRUEANOMR Calculates true anomaly and radius
- 
+% TRUEANOMR Calculates true anomaly and radius 
 function [phi0, r] = trueanomr(A,e,E)
 
 %   Returns the true anomaly (in radians) and orbit distance with input of
