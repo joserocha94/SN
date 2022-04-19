@@ -1,5 +1,5 @@
 % =======================================================================
-%   Exercise 2 – Noiseless Pseudoranges
+%   Exercise 2 â€“ Noiseless Pseudoranges
 % =======================================================================
 
 %   Consider a GPS receiver at the following WGS 84 (x,y,z) cartesian coordinates:
@@ -7,8 +7,8 @@
 %           r1 = (4918525.18 m, -791212.21 m, 3969762.19 m)
 %
 % For the same receiver position of the previous exercise, and for the same ephemerides,
-% consider now a clock offset of 500 µs, at TOW 536400 s, and a clock drift of 0.4 µs/s. In
-% these conditions, and for an elevation mask of 10º, compute the pseudoranges, measured at
+% consider now a clock offset of 500 Âµs, at TOW 536400 s, and a clock drift of 0.4 Âµs/s. In
+% these conditions, and for an elevation mask of 10Âº, compute the pseudoranges, measured at
 % r1, on Week Number (WN) 2056, for every second between Time Of Week (TOW)
 % 536400 s and (536400 s +3600 s). Plot the true ranges and the computed pseudoranges, for
 % the time interval in consideration.
@@ -36,7 +36,7 @@
   R = zeros(size(time,1),size(data,1));
   
   for i=1:size(data,1)
-     for s=1:size(time,1)  
+     for s=1:3 %size(time,1)  
         d_linha = 0;
         k = 1;
         t = time(s);
@@ -76,13 +76,12 @@
           pseudoR(i,j) = pseudoR(i,j) + c * (500e-6 + 0.4e-6 * (i-1));
       end
   end
+  
 
-    for i=1:size(data,1)
+  for i=1:size(data,1)
      for s=1:3 %size(time,1)
-       fprintf('\nSVN:%d \t Timestep:%d \t %.3f', data(i,1), s, pseudoR(i,s));
+       fprintf('\nSVN:%d \t Timestep:%d \t %.3f', data(i,1), s, pseudoR(s,i));
      endfor
      fprintf('\n');
   endfor
-  
-  
-  
+ 
