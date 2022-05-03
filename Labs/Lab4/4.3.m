@@ -1,5 +1,5 @@
 % =======================================================================
-%   Exercise 3 – Linearized Single Epoch LS Solution
+%   Exercise 3 â€“ Linearized Single Epoch LS Solution
 % =======================================================================
 %
 %  Consider the simulated pseudoranges, stored in the ASCII file npr.txt, as have been
@@ -15,6 +15,9 @@
 %  guess on the next iteration. How many iterations were needed to get the difference between
 %  the position estimates equal to (or below) 1mm? Repeat the exercise using p1 and the origin
 % of the reference system as initial guesses
+
+
+% TO DO: remove values declaration, upload correct script
 
 pseudoRanges = zeros(1);
 cons = zeros(1);
